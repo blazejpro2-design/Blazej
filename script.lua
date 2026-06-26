@@ -146,9 +146,9 @@ for i = 1, 100 do
 	percent.Text = i.."%"
 
 	if i < 30 then
-		status.Text = "TRWA..."
+		status.Text = "Lasts"
 	elseif i < 70 then
-		status.Text = "ŁADOWANIE SYSTEMU..."
+		status.Text = "Loading system..."
 	else
 		status.Text = "KOŃCZENIE..."
 	end
@@ -156,7 +156,7 @@ for i = 1, 100 do
 	task.wait(0.01) -- krócej
 end
 
-status.Text = "GOTOWE"
+status.Text = "Ready"
 
 -- OPEN TEXT
 local open = Instance.new("TextLabel")
@@ -164,7 +164,7 @@ open.BackgroundTransparency = 1
 open.Size = UDim2.new(1,0,0,40)
 open.Position = UDim2.new(0,0,0.78,0)
 open.Font = Enum.Font.GothamBold
-open.Text = "Open [F]"
+open.Text = "Open [Q]"
 open.TextColor3 = Color3.fromRGB(0,200,255)
 open.TextScaled = true
 open.Parent = bg
@@ -184,7 +184,7 @@ local UIS = game:GetService("UserInputService")
 local closing = false
 
 UIS.InputBegan:Connect(function(input)
-	if input.KeyCode == Enum.KeyCode.F and not closing then
+	if input.KeyCode == Enum.KeyCode.Q and not closing then
 		closing = true
 
 		TweenService:Create(blur,TweenInfo.new(0.6),{Size=0}):Play()
