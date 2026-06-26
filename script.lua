@@ -162,19 +162,32 @@ status.Text = "Ready"
 local open = Instance.new("TextLabel")
 open.BackgroundTransparency = 1
 open.Size = UDim2.new(1,0,0,40)
-open.Position = UDim2.new(0,0,0.78,0)
+open.Position = UDim2.new(0,0,0.76,0) -- Delikatnie podniesione, by zrobić miejsce na drugi tekst
 open.Font = Enum.Font.GothamBold
-open.Text = "Open [Q]"
+open.Text = "Open [F]"
 open.TextColor3 = Color3.fromRGB(0,200,255)
 open.TextScaled = true
 open.Parent = bg
 
--- BLINK
+-- CLOSE TEXT (English translation below)
+local closeText = Instance.new("TextLabel")
+closeText.BackgroundTransparency = 1
+closeText.Size = UDim2.new(1,0,0,25)
+closeText.Position = UDim2.new(0,0,0.82,0) -- Umieszczone bezpośrednio pod "Open [F]"
+closeText.Font = Enum.Font.GothamMedium
+closeText.Text = "CLOSE LOADING SCREEN [Q]"
+closeText.TextColor3 = Color3.fromRGB(150,150,150) -- Nieco ciemniejszy kolor, by zachować hierarchię
+closeText.TextScaled = true
+closeText.Parent = bg
+
+-- BLINK (Now common animation for both texts)
 task.spawn(function()
-	while open.Parent do
+	while open.Parent and closeText.Parent do
 		TweenService:Create(open,TweenInfo.new(0.5),{TextTransparency=0.6}):Play()
+		TweenService:Create(closeText,TweenInfo.new(0.5),{TextTransparency=0.6}):Play()
 		task.wait(0.5)
 		TweenService:Create(open,TweenInfo.new(0.5),{TextTransparency=0}):Play()
+		TweenService:Create(closeText,TweenInfo.new(0.5),{TextTransparency=0}):Play()
 		task.wait(0.5)
 	end
 end)
